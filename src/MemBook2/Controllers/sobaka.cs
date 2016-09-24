@@ -15,5 +15,9 @@ namespace MemBook2.Controllers
         {
             return "собака съела товар";
         }
+        public IActionResult Memes()
+        {
+            return View();
+        }
     }
 }
