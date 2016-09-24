@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MemBook.Models.Book>
+@{
+    //ViewData["Title"] = "Список книг";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Магазин книг</title>
+</head>
+<body>
+    <h3>Книги</h3>
+    <table>
+        <tr>
+            <td>Название</td>
+            <td>Производитель</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        @foreach (var book in Model)
+            {
+            <tr>
+                <td>@book.Name</td>
+                <td>@book.Company</td>
+                <td>@book.Price</td>
+                <td><a href="~/Home/Buy/@book.Id">Купить</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
