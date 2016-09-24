@@ -34,6 +34,7 @@ namespace MemBook.Models
                         Price = 500
                     }
                 );
+                
                 context.SaveChanges();
             }
         }
