@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MemBook.Controllers
+// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace MemBook2.Controllers
 {
     public class sobaka : Controller
     {
@@ -8,6 +14,10 @@ namespace MemBook.Controllers
         public string Index()
         {
             return "собака съела товар";
+        }
+        public IActionResult Memes()
+        {
+            return View();
         }
     }
 }
