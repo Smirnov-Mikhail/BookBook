@@ -10,27 +10,27 @@ namespace MemBook.Controllers
         public HomeController(BookContext context)
         {
             _db = context;
-            
         }
+
         public IActionResult Index()
         {
             return View(_db.Books.ToList());
         }
 
-        //
-        // GET: /test123/
-
-        public string testController()
+        [HttpGet]
+        public IActionResult Buy(int id)
         {
-            return "hello pes";
+            ViewBag.BookId = id;
+            return View();
         }
 
-        // 
-        // GET: /HelloWorld/Welcome/ 
-
-        public string Welcome()
+        [HttpPost]
+        public string Buy(Order order)
         {
-            return "This is the Welcome action method...";
+            _db.Orders.Add(order);
+            // сохраняем в бд все изменения
+            _db.SaveChanges();
+            return "Спасибо, " + order.User + ", за покупку!";
         }
     }
 }
