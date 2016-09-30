@@ -1,23 +1,12 @@
 ﻿@model IEnumerable<MemBook.Models.Book>
 @{
-    ViewData["Title"] = "Каталог товаров";
+    ViewData["Title"] = "Главная";
 }
-<h3>Книги</h3>
-<table class="table-condensed">
-    <tr>
-        <td>Модель</td>
-        <td>Производитель</td>
-        <td>Цена</td>
-        <td></td>
-    </tr>
-    @foreach (var book in Model)
-    {
-        <tr>
-            <td>@book.Name</td>
-            <td>@book.Company</td>
-            <td>@book.Price</td>
-            <td><a href="~/Home/Buy/@book.Id">Купить</a></td>
-        </tr>
-    }
-</table>
-<a href="~/sobaka/memes" style="opacity:0.34">Check for new memes..</a>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <img src="~/images/welcome.jpg" />
+</body>
+</html>

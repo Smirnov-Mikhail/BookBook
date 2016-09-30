@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MemBook.Controllers
 {
-    public class sobaka : Controller
+    public class Sobaka : Controller
     {
         // GET: /sobaka/
         public string Index()

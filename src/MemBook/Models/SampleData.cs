@@ -7,7 +7,6 @@ namespace MemBook.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            //Так заработало!
             var context = serviceProvider.GetService(typeof(BookContext)) as BookContext;
 
             if (context != null && !context.Books.Any())
