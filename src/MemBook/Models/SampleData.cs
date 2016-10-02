@@ -21,7 +21,7 @@ namespace MemBook.Models
                     new Book
                     {
                         Name = "Мемология",
-                        Company = "Господь",
+                        Company = "Анонимус",
                         Price = 100500
                     },
                     new Book
