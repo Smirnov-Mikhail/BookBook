@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -7,8 +8,8 @@ using MemBook.Models;
 namespace MemBook.Migrations
 {
     [DbContext(typeof(BookContext))]
-    [Migration("20160924165816_Initial")]
-    partial class Initial
+    [Migration("20161010143842_AddColumnBookInfoInBookTable")]
+    partial class AddColumnBookInfoInBookTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +21,8 @@ namespace MemBook.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Annotation");
 
                     b.Property<string>("Company");
 

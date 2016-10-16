@@ -25,6 +25,13 @@ namespace MemBook.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult BookInfo(int id)
+        {
+            ViewBag.Annotation = _db.Books.ToList()[id - 1].Annotation;
+            return View();
+        }
+        
         [HttpPost]
         public string Buy(Order order)
         {
