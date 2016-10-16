@@ -55,9 +55,9 @@ namespace MemBook
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapRoute(
+                /*routes.MapRoute(
                     name: "default2",
-                    template: "{controller=Store}/{action=BookInfo}/{price?}");
+                    template: "{controller=Store}/{action=BookInfo}/{price?}");*/ // вот так ожно добавлять маршруты, схоронил, чтобы не потерять
             });
 
             // вызываем инициализатор
