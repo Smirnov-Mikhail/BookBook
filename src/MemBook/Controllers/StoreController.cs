@@ -29,6 +29,9 @@ namespace MemBook.Controllers
         public IActionResult BookInfo(int id)
         {
             ViewBag.Annotation = _db.Books.ToList()[id - 1].Annotation;
+            ViewBag.ImagePath = Url.Content("~/images/books/" + id + ".jpg");
+            ViewBag.BookId = id;
+            ViewBag.Price = _db.Books.ToList()[id - 1].Price;
             return View();
         }
         

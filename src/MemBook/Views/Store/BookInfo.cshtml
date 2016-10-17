@@ -3,4 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>@ViewBag.Annotation</h3>
+<div class="form-group">
+    <img src="@ViewBag.ImagePath" align="left"/>
+    <h4> @ViewBag.Annotation</h4>
+    <h3> Цена @ViewBag.Price </h3>
+    <h3> <a href="~/Store/Buy/@ViewBag.BookId">Купить</a> </h3>
+</div>
