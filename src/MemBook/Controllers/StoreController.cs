@@ -6,8 +6,8 @@ namespace MemBook.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly BookContext _db;
-        public StoreController(BookContext context)
+        private readonly ApplicationDbContext _db;
+        public StoreController(ApplicationDbContext context)
         {
             _db = context;
         }
