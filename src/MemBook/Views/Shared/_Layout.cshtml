@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+@RenderSection("scripts", required: false)
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,6 +16,7 @@
                     <li><a href="~/Home/Index" class="navbar-brand">Главная</a></li>
                     <li><a href="~/Sobaka/Memes" class="navbar-brand">Мемы</a></li>
                     <li><a href="~/Store/Catalog" class="navbar-brand">Магазин</a></li>
+                    <li>@Html.Partial("_LoginPartial")</li>
                 </ul>
             </div>
         </div>
