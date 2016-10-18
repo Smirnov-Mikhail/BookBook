@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using MemBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MemBook.Controllers
 {
@@ -17,14 +18,14 @@ namespace MemBook.Controllers
         {
             return View(_db.Books.ToList());
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Buy(int id)
         {
             ViewBag.BookId = id;
             return View();
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult BookInfo(int id)
         {
@@ -34,7 +35,7 @@ namespace MemBook.Controllers
             ViewBag.Price = _db.Books.ToList()[id - 1].Price;
             return View();
         }
-        
+        [Authorize]
         [HttpPost]
         public string Buy(Order order)
         {
