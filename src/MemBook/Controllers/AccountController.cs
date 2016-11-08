@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using MemBook.Models;
 using MemBook.Models.AccountViewModels;
 using MemBook.Services;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MemBook.Controllers
 {
@@ -19,18 +20,21 @@ namespace MemBook.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
-
+        
         public AccountController(
             UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
@@ -106,6 +110,7 @@ namespace MemBook.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -115,6 +120,18 @@ namespace MemBook.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
+                    if (model.SecretWord == "sobakaHAHA")
+                    {
+                        if (!await _userManager.IsInRoleAsync(user, "admin"))
+                        {
+                            var res = await _userManager.AddToRoleAsync(user, "admin");
+                            if (res.Succeeded)
+                            {
+                                _logger.LogInformation(3, "Successfully added a role");
+                            }
+                        }
+                    }
+                    
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);

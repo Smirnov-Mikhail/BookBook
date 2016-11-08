@@ -1,14 +1,34 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace MemBook.Models
 {
     public static class SampleData
     {
+        private static void createRoles(ApplicationDbContext context)
+        {
+            
+            bool t = context.Roles.Contains(new IdentityRole { Name = "admin" });
+            if (!t)
+            {
+                context.Roles.Add(new IdentityRole("admin"));
+            }
+            bool tt =  context.Roles.Contains(new IdentityRole { Name = "moderator" });
+            if (!tt)
+            {
+                context.Roles.Add(new IdentityRole("moderator"));
+            }
+            bool ttt =  context.Roles.Contains(new IdentityRole { Name = "user" });
+            if (!ttt)
+            {
+                context.Roles.Add(new IdentityRole("user"));
+            }
+        }
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetService(typeof(ApplicationDbContext)) as ApplicationDbContext;
-
+            createRoles(context);
             if (context != null && !context.Books.Any())
             {
                 context.Books.AddRange(

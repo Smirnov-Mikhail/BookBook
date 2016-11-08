@@ -16,6 +16,14 @@
             </li>
         </ul>
     </form>
+@if (User.IsInRole("admin"))
+{
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+        <a asp-area="" asp-controller="adminPage" asp-action="Index" title="ku">Admin page</a>
+      </li>
+    </ul>
+}
 }
 else
 {

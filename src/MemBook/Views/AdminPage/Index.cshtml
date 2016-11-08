@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form asp-controller="adminPage" asp-action="Index">
+
+  <h4>Hello admin!</h4>
+  @foreach (var role in @ViewBag.roles)
+  {
+      <p>
+        <strong>@role.Name | </strong>
+        
+      </p>
+  }
+</form>
