@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<form asp-controller="adminPage" asp-action="Index">
+<form asp-controller="AdminPage" asp-action="Index">
 
   <h4>Hello admin!</h4>
   @foreach (var role in @ViewBag.roles)
@@ -14,5 +14,5 @@
 </form>
 
 <p>
-  <a asp-controller="adminPage" asp-action="Add">add book</a>
+  <a asp-controller="AdminPage" asp-action="Add">add book</a>
 </p>

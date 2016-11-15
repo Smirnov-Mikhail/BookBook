@@ -16,11 +16,11 @@
             </li>
         </ul>
     </form>
-@if (User.IsInRole("admin"))
+@if (User.IsInRole("ADMIN"))
 {
     <ul class="nav navbar-nav navbar-left">
       <li>
-        <a asp-area="" asp-controller="adminPage" asp-action="Index" title="ku">Admin page</a>
+        <a asp-area="" asp-controller="AdminPage" asp-action="Index" title="ku">Admin page</a>
       </li>
     </ul>
 }

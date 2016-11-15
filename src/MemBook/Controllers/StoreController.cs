@@ -18,6 +18,7 @@ namespace MemBook.Controllers
         {
             return View(_db.Books.ToList());
         }
+
         [Authorize]
         [HttpGet]
         public IActionResult Buy(int id)
@@ -25,16 +26,19 @@ namespace MemBook.Controllers
             ViewBag.BookId = id;
             return View();
         }
+
         [Authorize]
         [HttpGet]
         public IActionResult BookInfo(int id)
         {
-            ViewBag.Annotation = _db.Books.ToList()[id - 1].Annotation;
-            ViewBag.ImagePath = Url.Content("~/images/books/" + id + ".jpg");
+            var bookId = _db.Books.FirstOrDefault(x => x.Id == id);
+            ViewBag.Annotation = bookId.Annotation;
+            ViewBag.ImagePath = Url.Content("~/images/books/" + bookId.ImageUrl);
             ViewBag.BookId = id;
-            ViewBag.Price = _db.Books.ToList()[id - 1].Price;
+            ViewBag.Price = bookId.Price;
             return View();
         }
+
         [Authorize]
         [HttpPost]
         public string Buy(Order order)

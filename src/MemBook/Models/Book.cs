@@ -11,5 +11,6 @@ namespace MemBook.Models
         [DataType(DataType.Currency)]
         public int Price { get; set; }
         public string Annotation { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

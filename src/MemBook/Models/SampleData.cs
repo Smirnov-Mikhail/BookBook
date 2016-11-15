@@ -6,29 +6,49 @@ namespace MemBook.Models
 {
     public static class SampleData
     {
-        private static void createRoles(ApplicationDbContext context)
+        private static void CreateRoles(ApplicationDbContext context)
         {
-            
-            bool t = context.Roles.Contains(new IdentityRole { Name = "admin" });
+
+            bool t = false;//context.Roles.Contains(new IdentityRole { Name = "ADMIN" });
+            bool tt = false;
+            bool ttt = false;
+            foreach (var value in context.Roles.ToList<IdentityRole>())
+            {
+                if (value.Name == "ADMIN")
+                    t = true;
+
+                if (value.Name == "moderator")
+                    tt = true;
+
+                if (value.Name == "user")
+                    ttt = true;
+            }
+
             if (!t)
             {
-                context.Roles.Add(new IdentityRole("admin"));
+                var temp = context.Roles.Add(new IdentityRole
+                {
+                    Name = "ADMIN",
+                    NormalizedName = "ADMIN"
+                });                
             }
-            bool tt =  context.Roles.Contains(new IdentityRole { Name = "moderator" });
+
             if (!tt)
             {
                 context.Roles.Add(new IdentityRole("moderator"));
             }
-            bool ttt =  context.Roles.Contains(new IdentityRole { Name = "user" });
+
             if (!ttt)
             {
                 context.Roles.Add(new IdentityRole("user"));
             }
+            context.SaveChanges();
         }
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetService(typeof(ApplicationDbContext)) as ApplicationDbContext;
-            createRoles(context);
+            CreateRoles(context);
+            var temp = context.Roles.ToList<IdentityRole>();
             if (context != null && !context.Books.Any())
             {
                 context.Books.AddRange(

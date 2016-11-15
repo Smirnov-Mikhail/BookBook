@@ -122,9 +122,9 @@ namespace MemBook.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     if (model.SecretWord == "sobakaHAHA")
                     {
-                        if (!await _userManager.IsInRoleAsync(user, "admin"))
+                        if (!await _userManager.IsInRoleAsync(user, "ADMIN"))
                         {
-                            var res = await _userManager.AddToRoleAsync(user, "admin");
+                            var res = await _userManager.AddToRoleAsync(user, "ADMIN");
                             if (res.Succeeded)
                             {
                                 _logger.LogInformation(3, "Successfully added a role");
