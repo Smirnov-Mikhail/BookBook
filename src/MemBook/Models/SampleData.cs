@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace MemBook.Models
 {
@@ -48,7 +51,12 @@ namespace MemBook.Models
         {
             var context = serviceProvider.GetService(typeof(ApplicationDbContext)) as ApplicationDbContext;
             CreateRoles(context);
-            var temp = context.Roles.ToList<IdentityRole>();
+            string text = System.IO.File.ReadAllText(@"C:\dataResult.txt", Encoding.UTF8);//.GetEncoding(1251));
+
+            var bookArray = JsonConvert.DeserializeObject<Book[]> (text);
+            context.Books.AddRange(bookArray);
+            context.SaveChanges();
+            /*var temp = context.Roles.ToList<IdentityRole>();
             if (context != null && !context.Books.Any())
             {
                 context.Books.AddRange(
@@ -81,7 +89,7 @@ namespace MemBook.Models
                 );
 
                 context.SaveChanges();
-            }
+            }*/
         }
     }
 }

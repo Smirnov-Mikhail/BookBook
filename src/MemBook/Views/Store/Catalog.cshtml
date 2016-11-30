@@ -8,14 +8,20 @@
     <tr>
         <td>Название</td>
         <td>Автор</td>
+        <td>Издатель</td>
+        <td>Год</td>
+        <td>Жанр</td>
         <td>Цена</td>
         <td></td>
     </tr>
     @foreach (var book in Model)
     {
         <tr>
-            <td><a href="~/Store/BookInfo/@book.Id">@book.Name</a></td>
-            <td>@book.Company</td>
+            <td width="300"><a href="~/Store/BookInfo/@book.Id">@book.Title</a></td>           
+            <td width="150">@book.Author</td>
+            <td width="150">@book.Publisher</td>
+            <td>@book.Year</td>
+            <td>@book.Genre</td>
             <td>@book.Price</td>
             <td><a href="~/Store/Buy/@book.Id">Купить</a></td>
         </tr>
